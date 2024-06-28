@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { Navigation } from "./_components/Navigation";
 import { SearchCommand } from "@/searchCommand";
 import { SettingsModal } from "@/components/modals/SettingsModal";
+import { CoverModal } from "@/components/modals/CoverModal";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -26,6 +27,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="h-full overflow-y-auto flex-1">
         <SearchCommand/>
         <SettingsModal/>
+        <CoverModal/>
         {children}
         </main>
     </div>

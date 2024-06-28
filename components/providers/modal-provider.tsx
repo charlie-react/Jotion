@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { SettingsModal } from "../modals/SettingsModal";
-import { CoverModal } from "../modals/CoverModal";
+import { CoverModal } from "@/components/modals/CoverModal"
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);

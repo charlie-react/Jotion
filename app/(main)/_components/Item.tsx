@@ -54,7 +54,7 @@ export const Item = ({
   documentIcon,
 }: ItemProps) => {
   const create = useMutation(api.documents.create);
-  const archive= useMutation(api.documents.archive)
+  const archive = useMutation(api.documents.archive);
   const router = useRouter();
   const { user } = useUser();
 
@@ -67,19 +67,19 @@ export const Item = ({
     onExpand?.();
   };
 
-  const onArchive = (event:React.MouseEvent<HTMLDivElement,MouseEvent>)=>{
-event.stopPropagation()
+  const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
 
-if(!id) return;
+    if (!id) return;
 
-const promise = archive({id})
+    const promise = archive({ id }).then((documentId)=>router.push("/documents"))
 
-toast.promise(promise,{
-  loading:"Archiving note",
-  success:"Note archived",
-  error:"Failed to archive note"
-})
-  }
+    toast.promise(promise, {
+      loading: "Archiving note",
+      success: "Note archived",
+      error: "Failed to archive note",
+    });
+  };
 
   const onCreate = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
@@ -90,7 +90,7 @@ toast.promise(promise,{
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
+        router.push(`/documents/${documentId}`);
       }
     );
 
@@ -110,7 +110,6 @@ toast.promise(promise,{
         "group min-h-[27px] text-muted-foreground w-full text-sm py-1 pr-3 flex items-center hover:bg-primary/5 font-medium",
         active && "bg-primary/5 text-primary"
       )}
-     
     >
       {!!id && (
         <div
@@ -124,7 +123,7 @@ toast.promise(promise,{
       {documentIcon ? (
         <div className="mr-2 shrink-0 text-[18px]">{documentIcon}</div>
       ) : (
-        <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground" />
+        <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
       )}
 
       <span className="truncate">{label}</span>

@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 
 import { ThemeProvider } from "@/components/providers/theme-providers";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 import { ModalProvider } from "@/components/providers/modal-provider";
 
 
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={nunito.className}>
         <ConvexClientProvider>
+          <EdgeStoreProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -53,6 +55,7 @@ export default function RootLayout({
             {children}
             <Toaster position="bottom-center" />
           </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>
